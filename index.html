@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>MarKyinPhan · Digital Card</title>
+
+  <style>
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      min-height: 100vh;
+      background: radial-gradient(circle at top, #0b1220, #020617);
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto;
+      color: #ffffff;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .card {
+      width: 100%;
+      max-width: 420px;
+      padding: 28px 22px 32px;
+      border-radius: 26px;
+      background: rgba(255, 255, 255, 0.08);
+      backdrop-filter: blur(18px);
+      border: 1px solid rgba(255, 255, 255, 0.15);
+      box-shadow: 0 40px 80px rgba(0, 0, 0, 0.6);
+      text-align: center;
+    }
+
+    .avatar {
+      width: 110px;
+      height: 110px;
+      border-radius: 50%;
+      margin: 0 auto 16px;
+      background: url("avatar.jpg") center / cover no-repeat;
+      border: 3px solid rgba(255,255,255,0.4);
+      box-shadow: 0 0 30px rgba(255,255,255,0.25);
+    }
+
+    h1 {
+      font-size: 28px;
+      margin: 8px 0 6px;
+      font-weight: 600;
+    }
+
+    .subtitle {
+      font-size: 15px;
+      color: rgba(255,255,255,0.75);
+      margin-bottom: 24px;
+    }
+
+    .links {
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+    }
+
+    .link {
+      padding: 16px 20px;
+      border-radius: 18px;
+      text-decoration: none;
+      color: #fff;
+      font-size: 16px;
+      font-weight: 500;
+      background: rgba(255,255,255,0.08);
+      backdrop-filter: blur(10px);
+      border: 1px solid rgba(255,255,255,0.15);
+      transition: all 0.3s ease;
+    }
+
+    .link:hover {
+      transform: translateY(-3px);
+      background: rgba(255,255,255,0.18);
+      box-shadow: 0 12px 30px rgba(0,0,0,0.45);
+    }
+
+    footer {
+      margin-top: 24px;
+      font-size: 13px;
+      color: rgba(255,255,255,0.45);
+    }
+  </style>
+</head>
+
+<body>
+
+  <div class="card">
+
+    <div class="avatar"></div>
+
+    <h1>MarKyinPhan</h1>
+    <div class="subtitle">Digital Creator · Social Media · Global</div>
+
+    <div class="links">
+      <a class="link" href="https://www.instagram.com/mo.bei.961?igsh=eHc2NjJqamR0eTlo&utm_source=qr" target="_blank">Instagram</a>
+      <a class="link" href="https://www.threads.com/@mo.bei.961?igshid=NTc4MTIwNjQ2YQ==" target="_blank">Threads</a>
+      <a class="link" href="https://x.com/markyinphan?s=21" target="_blank">X / Twitter</a>
+      <a class="link" href="https://www.facebook.com/share/1P8LNg19Nr/?mibextid=wwXIfr" target="_blank">Facebook</a>
+      <a class="link" href="https://www.tiktok.com/@phan7697?_r=1&_t=ZS-93ArponfuQX" target="_blank">TikTok</a>
+      <a class="link" href="https://t.me/Mar20037" target="_blank">Telegram</a>
+    </div>
+
+    <footer>
+      © 2026 MarKyinPhan · Powered by GitHub Pages
+    </footer>
+
+  </div>
+
+</body>
+</html>
