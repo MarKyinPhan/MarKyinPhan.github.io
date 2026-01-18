@@ -1,169 +1,178 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
 <head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>MarKyinPhan</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>MarKyinPhan</title>
 
-<style>
-* {
-  box-sizing: border-box;
-  margin: 0;
-  padding: 0;
-  font-family: -apple-system, BlinkMacSystemFont, "SF Pro Text",
-    "Helvetica Neue", Arial, sans-serif;
-}
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: -apple-system, BlinkMacSystemFont, "SF Pro Text",
+        "Helvetica Neue", Arial, sans-serif;
+    }
 
-body {
-  min-height: 100vh;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  background: linear-gradient(180deg, #ffffff 0%, #eef3ff 50%, #f7f9ff 100%);
-  overflow: hidden;
-}
+    body {
+      min-height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background:
+        radial-gradient(circle at top, #ffffff 0%, #eef2ff 40%, #e9f0ff 100%);
+      color: #111;
+    }
 
-/* 漂浮粒子背景 */
-body::before {
-  content: "";
-  position: absolute;
-  inset: 0;
-  background-image:
-    radial-gradient(circle, rgba(180,200,255,0.35) 1px, transparent 1px),
-    radial-gradient(circle, rgba(255,200,240,0.25) 1px, transparent 1px);
-  background-size: 80px 80px, 120px 120px;
-  animation: float 30s linear infinite;
-}
+    .card {
+      width: 100%;
+      max-width: 380px;
+      background: rgba(255, 255, 255, 0.75);
+      backdrop-filter: blur(20px);
+      border-radius: 28px;
+      padding: 28px 22px 24px;
+      box-shadow:
+        0 30px 60px rgba(0, 0, 0, 0.08),
+        inset 0 1px 0 rgba(255, 255, 255, 0.6);
+    }
 
-@keyframes float {
-  from { background-position: 0 0, 0 0; }
-  to { background-position: 0 -600px, 0 -1000px; }
-}
+    .avatar {
+      width: 96px;
+      height: 96px;
+      border-radius: 50%;
+      margin: 0 auto 16px;
+      overflow: hidden;
+      border: 2px solid rgba(255, 255, 255, 0.8);
+    }
 
-.card {
-  position: relative;
-  width: 100%;
-  max-width: 380px;
-  padding: 28px 22px 24px;
-  background: rgba(255,255,255,0.75);
-  backdrop-filter: blur(22px);
-  border-radius: 28px;
-  box-shadow:
-    0 30px 60px rgba(0,0,0,0.08),
-    inset 0 1px 0 rgba(255,255,255,0.6);
-}
+    .avatar img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
 
-.avatar {
-  width: 96px;
-  height: 96px;
-  margin: 0 auto 16px;
-  border-radius: 50%;
-  overflow: hidden;
-  border: 2px solid rgba(255,255,255,0.9);
-}
+    h1 {
+      text-align: center;
+      font-size: 22px;
+      font-weight: 600;
+      letter-spacing: 0.3px;
+      margin-bottom: 6px;
+    }
 
-.avatar img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-}
+    .subtitle {
+      text-align: center;
+      font-size: 14px;
+      color: #666;
+      margin-bottom: 22px;
+    }
 
-h1 {
-  text-align: center;
-  font-size: 22px;
-  font-weight: 600;
-  margin-bottom: 6px;
-}
+    .links {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
 
-/* 彩色副标题 */
-.subtitle {
-  text-align: center;
-  font-size: 14px;
-  margin-bottom: 22px;
-}
+    .link {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 14px 18px;
+      border-radius: 18px;
+      background: rgba(255, 255, 255, 0.85);
+      text-decoration: none;
+      color: #111;
+      font-size: 15px;
+      box-shadow: 0 6px 16px rgba(0, 0, 0, 0.06);
+      transition: all 0.25s ease;
+    }
 
-.ig {
-  background: linear-gradient(45deg,#f58529,#dd2a7b,#8134af);
-  -webkit-background-clip: text;
-  color: transparent;
-  font-weight: 500;
-}
+    .link:hover {
+      transform: translateY(-1px);
+      box-shadow: 0 10px 22px rgba(0, 0, 0, 0.08);
+    }
 
-.tg {
-  color: #229ED9;
-  font-weight: 500;
-}
+    .link span {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
 
-.x {
-  color: #111;
-  font-weight: 500;
-}
+    .icon {
+      width: 22px;
+      height: 22px;
+    }
 
-.tk {
-  background: linear-gradient(45deg,#00f2ea,#ff0050);
-  -webkit-background-clip: text;
-  color: transparent;
-  font-weight: 500;
-}
-
-.links {
-  display: flex;
-  flex-direction: column;
-  gap: 12px;
-}
-
-.link {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 14px 18px;
-  border-radius: 18px;
-  background: rgba(255,255,255,0.85);
-  text-decoration: none;
-  color: #111;
-  font-size: 15px;
-  box-shadow: 0 6px 16px rgba(0,0,0,0.06);
-  transition: 0.25s ease;
-}
-
-.link:hover {
-  transform: translateY(-1px);
-  box-shadow: 0 10px 22px rgba(0,0,0,0.08);
-}
-
-footer {
-  margin-top: 22px;
-  text-align: center;
-  font-size: 12px;
-  color: #999;
-}
-</style>
+    footer {
+      margin-top: 22px;
+      text-align: center;
+      font-size: 12px;
+      color: #999;
+    }
+  </style>
 </head>
 
 <body>
   <div class="card">
     <div class="avatar">
-      <img src="avatar.jpg" alt="Avatar">
+      <!-- 头像文件名请确保是 avatar.jpg -->
+      <img src="avatar.jpg" alt="Avatar" />
     </div>
 
     <h1>MarKyinPhan</h1>
-
-    <div class="subtitle">
-      <span class="ig">Instagram</span> ·
-      <span class="tg">Telegram</span> ·
-      <span class="x">X</span> ·
-      <span class="tk">TikTok</span>
-    </div>
+    <div class="subtitle">Creator · Social</div>
 
     <div class="links">
-      <a class="link" href="https://www.instagram.com/markyin.phan" target="_blank">Instagram →</a>
-      <a class="link" href="https://t.me/MarkyinPhan" target="_blank">Telegram →</a>
-      <a class="link" href="https://x.com/MarKyinPhan" target="_blank">X / Twitter →</a>
-      <a class="link" href="https://www.tiktok.com/@markyin.phan" target="_blank">TikTok →</a>
+      <a class="link" href="https://www.instagram.com/markyin.phan" target="_blank">
+        <span>
+          <img class="icon" src="https://cdn.jsdelivr.net/npm/simple-icons@v9/icons/instagram.svg">
+          Instagram
+        </span>
+        →
+      </a>
+
+      <a class="link" href="https://www.threads.net/@markyin.phan" target="_blank">
+        <span>
+          <img class="icon" src="https://cdn.jsdelivr.net/npm/simple-icons@v9/icons/threads.svg">
+          Threads
+        </span>
+        →
+      </a>
+
+      <a class="link" href="https://x.com/MarKyinPhan" target="_blank">
+        <span>
+          <img class="icon" src="https://cdn.jsdelivr.net/npm/simple-icons@v9/icons/x.svg">
+          X / Twitter
+        </span>
+        →
+      </a>
+
+      <a class="link" href="https://www.facebook.com/profile.php?id=100076235822401" target="_blank">
+        <span>
+          <img class="icon" src="https://cdn.jsdelivr.net/npm/simple-icons@v9/icons/facebook.svg">
+          Facebook
+        </span>
+        →
+      </a>
+
+      <a class="link" href="https://www.tiktok.com/@markyin.phan" target="_blank">
+        <span>
+          <img class="icon" src="https://cdn.jsdelivr.net/npm/simple-icons@v9/icons/tiktok.svg">
+          TikTok
+        </span>
+        →
+      </a>
+
+      <a class="link" href="https://t.me/MarkyinPhan" target="_blank">
+        <span>
+          <img class="icon" src="https://cdn.jsdelivr.net/npm/simple-icons@v9/icons/telegram.svg">
+          Telegram
+        </span>
+        →
+      </a>
     </div>
 
     <footer>
-      © 2026 MarKyinPhan · GitHub Pages
+      © 2026 MarKyinPhan · Powered by GitHub Pages
     </footer>
   </div>
 </body>
