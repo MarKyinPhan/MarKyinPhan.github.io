@@ -1,107 +1,174 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="zh-CN">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>MarKyinPhan · Digital Card</title>
+  <title>MarKyinPhan</title>
 
   <style>
     * {
       box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: -apple-system, BlinkMacSystemFont, "SF Pro Text",
+        "Helvetica Neue", Arial, sans-serif;
     }
 
     body {
-      margin: 0;
       min-height: 100vh;
-      background: radial-gradient(circle at top, #0b1220, #020617);
-      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto;
-      color: #ffffff;
       display: flex;
       justify-content: center;
       align-items: center;
+      background:
+        radial-gradient(circle at top, #ffffff 0%, #eef2ff 40%, #e9f0ff 100%);
+      color: #111;
     }
 
     .card {
       width: 100%;
-      max-width: 420px;
-      padding: 32px 26px 34px;
+      max-width: 380px;
+      background: rgba(255, 255, 255, 0.75);
+      backdrop-filter: blur(20px);
       border-radius: 28px;
-      background: rgba(255, 255, 255, 0.08);
-      backdrop-filter: blur(18px);
-      border: 1px solid rgba(255, 255, 255, 0.15);
-      box-shadow: 0 30px 80px rgba(0, 0, 0, 0.6);
-      text-align: center;
+      padding: 28px 22px 24px;
+      box-shadow:
+        0 30px 60px rgba(0, 0, 0, 0.08),
+        inset 0 1px 0 rgba(255, 255, 255, 0.6);
     }
 
     .avatar {
-      width: 120px;
-      height: 120px;
+      width: 96px;
+      height: 96px;
       border-radius: 50%;
+      margin: 0 auto 16px;
+      overflow: hidden;
+      border: 2px solid rgba(255, 255, 255, 0.8);
+    }
+
+    .avatar img {
+      width: 100%;
+      height: 100%;
       object-fit: cover;
-      border: 3px solid rgba(255, 255, 255, 0.25);
-      box-shadow: 0 0 0 6px rgba(255, 255, 255, 0.05);
-      margin-bottom: 18px;
     }
 
     h1 {
-      font-size: 26px;
-      margin: 0;
+      text-align: center;
+      font-size: 22px;
       font-weight: 600;
       letter-spacing: 0.3px;
+      margin-bottom: 6px;
     }
 
     .subtitle {
-      margin-top: 8px;
+      text-align: center;
       font-size: 14px;
-      color: rgba(255, 255, 255, 0.7);
+      color: #666;
+      margin-bottom: 22px;
     }
 
     .links {
-      margin-top: 26px;
       display: flex;
       flex-direction: column;
-      gap: 14px;
+      gap: 12px;
     }
 
     .link {
-      display: block;
-      padding: 15px;
-      border-radius: 16px;
-      background: rgba(255, 255, 255, 0.12);
-      color: #fff;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 14px 18px;
+      border-radius: 18px;
+      background: rgba(255, 255, 255, 0.85);
       text-decoration: none;
+      color: #111;
       font-size: 15px;
-      font-weight: 500;
+      box-shadow: 0 6px 16px rgba(0, 0, 0, 0.06);
       transition: all 0.25s ease;
     }
 
     .link:hover {
-      background: rgba(255, 255, 255, 0.22);
-      transform: translateY(-2px);
+      transform: translateY(-1px);
+      box-shadow: 0 10px 22px rgba(0, 0, 0, 0.08);
+    }
+
+    .link span {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .icon {
+      width: 22px;
+      height: 22px;
     }
 
     footer {
-      margin-top: 28px;
+      margin-top: 22px;
+      text-align: center;
       font-size: 12px;
-      color: rgba(255, 255, 255, 0.4);
+      color: #999;
     }
   </style>
 </head>
 
 <body>
   <div class="card">
-    <img src="avatar.jpg" alt="Avatar" class="avatar" />
+    <div class="avatar">
+      <!-- 头像文件名请确保是 avatar.jpg -->
+      <img src="avatar.jpg" alt="Avatar" />
+    </div>
 
     <h1>MarKyinPhan</h1>
     <div class="subtitle">Creator · Social</div>
 
     <div class="links">
-      <a class="link" href="https://www.instagram.com/mo.bei.961" target="_blank">Instagram</a>
-      <a class="link" href="https://www.threads.com/@mo.bei.961" target="_blank">Threads</a>
-      <a class="link" href="https://x.com/markyinphan" target="_blank">X / Twitter</a>
-      <a class="link" href="https://www.facebook.com/share/1P8LNg19Nr/" target="_blank">Facebook</a>
-      <a class="link" href="https://www.tiktok.com/@phan7697" target="_blank">TikTok</a>
-      <a class="link" href="https://t.me/Mar20037" target="_blank">Telegram</a>
+      <a class="link" href="https://www.instagram.com/markyin.phan" target="_blank">
+        <span>
+          <img class="icon" src="https://cdn.jsdelivr.net/npm/simple-icons@v9/icons/instagram.svg">
+          Instagram
+        </span>
+        →
+      </a>
+
+      <a class="link" href="https://www.threads.net/@markyin.phan" target="_blank">
+        <span>
+          <img class="icon" src="https://cdn.jsdelivr.net/npm/simple-icons@v9/icons/threads.svg">
+          Threads
+        </span>
+        →
+      </a>
+
+      <a class="link" href="https://x.com/MarKyinPhan" target="_blank">
+        <span>
+          <img class="icon" src="https://cdn.jsdelivr.net/npm/simple-icons@v9/icons/x.svg">
+          X / Twitter
+        </span>
+        →
+      </a>
+
+      <a class="link" href="https://www.facebook.com/profile.php?id=100076235822401" target="_blank">
+        <span>
+          <img class="icon" src="https://cdn.jsdelivr.net/npm/simple-icons@v9/icons/facebook.svg">
+          Facebook
+        </span>
+        →
+      </a>
+
+      <a class="link" href="https://www.tiktok.com/@markyin.phan" target="_blank">
+        <span>
+          <img class="icon" src="https://cdn.jsdelivr.net/npm/simple-icons@v9/icons/tiktok.svg">
+          TikTok
+        </span>
+        →
+      </a>
+
+      <a class="link" href="https://t.me/MarkyinPhan" target="_blank">
+        <span>
+          <img class="icon" src="https://cdn.jsdelivr.net/npm/simple-icons@v9/icons/telegram.svg">
+          Telegram
+        </span>
+        →
+      </a>
     </div>
 
     <footer>
