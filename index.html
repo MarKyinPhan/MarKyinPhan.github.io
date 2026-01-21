@@ -2,193 +2,192 @@
 <html lang="zh-CN">
 <head>
   <meta charset="UTF-8" />
-  <title>MindLink · 心智链接</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>MindLink</title>
 
   <style>
     * {
       box-sizing: border-box;
-      font-family: -apple-system, BlinkMacSystemFont, "Inter", "SF Pro Text",
+      margin: 0;
+      padding: 0;
+      font-family: -apple-system, BlinkMacSystemFont, "SF Pro Text",
         "Helvetica Neue", Arial, sans-serif;
     }
 
     body {
-      margin: 0;
       min-height: 100vh;
       display: flex;
       justify-content: center;
       align-items: center;
-      background: radial-gradient(circle at top, #ffffff 0%, #eef3ff 40%, #e6ecff 100%);
+      background: radial-gradient(circle at top, #ffffff, #eef2ff, #e9f0ff);
       color: #111;
     }
 
     .card {
       width: 100%;
-      max-width: 420px;
-      background: rgba(255, 255, 255, 0.75);
+      max-width: 380px;
+      background: rgba(255, 255, 255, 0.8);
       backdrop-filter: blur(20px);
       border-radius: 28px;
-      padding: 28px 24px 32px;
+      padding: 28px 24px;
       box-shadow: 0 30px 60px rgba(0, 0, 0, 0.08);
       text-align: center;
-      animation: float 6s ease-in-out infinite;
     }
 
-    @keyframes float {
-      0% { transform: translateY(0); }
-      50% { transform: translateY(-6px); }
-      100% { transform: translateY(0); }
-    }
-
-    .avatar {
-      width: 88px;
-      height: 88px;
+    .icon {
+      width: 64px;
+      height: 64px;
       border-radius: 50%;
-      background: linear-gradient(135deg, #c7d2fe, #e0e7ff);
+      background: #eef2ff;
       display: flex;
       align-items: center;
       justify-content: center;
       margin: 0 auto 16px;
-      font-size: 36px;
+      font-size: 28px;
     }
 
     h1 {
       font-size: 22px;
       margin-bottom: 6px;
-      font-weight: 600;
     }
 
     .subtitle {
       font-size: 14px;
       color: #666;
-      margin-bottom: 24px;
+      margin-bottom: 20px;
     }
 
     .question {
-      font-size: 16px;
-      margin-bottom: 20px;
-      line-height: 1.6;
+      font-size: 15px;
+      margin-bottom: 18px;
     }
 
-    .options {
-      display: flex;
-      flex-direction: column;
-      gap: 12px;
-    }
-
-    button {
-      border: none;
-      border-radius: 16px;
+    .btn {
+      width: 100%;
       padding: 14px;
+      margin-bottom: 12px;
+      border-radius: 16px;
+      border: none;
       font-size: 15px;
       cursor: pointer;
-      background: rgba(255, 255, 255, 0.9);
+      background: #fff;
       box-shadow: 0 6px 16px rgba(0, 0, 0, 0.06);
-      transition: all 0.25s ease;
+      transition: all 0.2s ease;
     }
 
-    button:hover {
+    .btn:hover {
       transform: translateY(-1px);
-      box-shadow: 0 10px 22px rgba(0, 0, 0, 0.08);
     }
 
     .result {
-      font-size: 16px;
-      line-height: 1.7;
+      display: none;
+    }
+
+    .result h2 {
+      font-size: 20px;
+      margin-bottom: 10px;
+    }
+
+    .result p {
+      font-size: 14px;
+      color: #555;
+      line-height: 1.6;
+      margin-bottom: 18px;
     }
 
     .share {
-      margin-top: 20px;
       font-size: 13px;
-      color: #555;
+      color: #666;
+      cursor: pointer;
+      text-decoration: underline;
+    }
+
+    footer {
+      margin-top: 18px;
+      font-size: 12px;
+      color: #aaa;
     }
   </style>
 </head>
 
 <body>
-  <div class="card" id="game">
-    <div class="avatar">🤖</div>
-    <h1>MindLink</h1>
-    <div class="subtitle">心智链接 · Your choices connect you</div>
+  <div class="card">
 
-    <div class="question" id="question"></div>
+    <!-- 首页 -->
+    <div id="start">
+      <div class="icon">🤖</div>
+      <h1>MindLink</h1>
+      <div class="subtitle">Your choices connect you</div>
 
-    <div class="options" id="options"></div>
+      <div class="question">
+        如果世界只剩下一种状态，你更希望是？
+      </div>
+
+      <button class="btn" onclick="showResult('calm')">🌊 平静 · Calm</button>
+      <button class="btn" onclick="showResult('change')">✨ 变化 · Change</button>
+    </div>
+
+    <!-- 结果页 -->
+    <div id="result" class="result">
+      <div class="icon" id="resultIcon">✨</div>
+      <h2 id="resultTitle"></h2>
+      <p id="resultText"></p>
+
+      <button class="btn" onclick="restart()">🔁 Try another state</button>
+      <div class="share" onclick="shareResult()">📤 Share my result</div>
+
+      <footer>
+        Experimental project · Built with AI ✨
+      </footer>
+    </div>
+
   </div>
 
   <script>
-    const questions = [
-      {
-        text: "如果世界只剩下一种状态，你更希望是？<br/>If the world had only one state:",
-        options: [
-          { text: "🌊 平静 · Calm", value: "calm" },
-          { text: "✨ 变化 · Change", value: "change" }
-        ]
+    const results = {
+      calm: {
+        title: "Observer Mind · 观察型心智",
+        text: "你在理性与感性之间自由游走，通过观察与选择构建意义。",
+        icon: "✨",
+        share: "I got “Observer Mind” on MindLink 🌊"
       },
-      {
-        text: "你更相信？<br/>You trust more in:",
-        options: [
-          { text: "📊 逻辑 · Logic", value: "logic" },
-          { text: "💫 直觉 · Intuition", value: "intuition" }
-        ]
-      },
-      {
-        text: "当面对未知时，你会？<br/>Facing the unknown:",
-        options: [
-          { text: "🔍 探索 · Explore", value: "explore" },
-          { text: "🛡️ 观察 · Observe", value: "observe" }
-        ]
+      change: {
+        title: "Explorer Mind · 探索型心智",
+        text: "你拥抱变化与未知，在流动中寻找成长与可能性。",
+        icon: "🚀",
+        share: "I got “Explorer Mind” on MindLink ✨"
       }
-    ];
+    };
 
-    let current = 0;
-    let answers = [];
+    function showResult(type) {
+      document.getElementById("start").style.display = "none";
+      document.getElementById("result").style.display = "block";
 
-    const questionEl = document.getElementById("question");
-    const optionsEl = document.getElementById("options");
+      document.getElementById("resultTitle").innerText = results[type].title;
+      document.getElementById("resultText").innerText = results[type].text;
+      document.getElementById("resultIcon").innerText = results[type].icon;
 
-    function renderQuestion() {
-      const q = questions[current];
-      questionEl.innerHTML = q.text;
-      optionsEl.innerHTML = "";
-
-      q.options.forEach(opt => {
-        const btn = document.createElement("button");
-        btn.textContent = opt.text;
-        btn.onclick = () => {
-          answers.push(opt.value);
-          current++;
-          current < questions.length ? renderQuestion() : showResult();
-        };
-        optionsEl.appendChild(btn);
-      });
+      window.currentShare = results[type].share;
     }
 
-    function showResult() {
-      let personality = "Balanced Mind · 平衡型心智";
-
-      if (answers.includes("change") && answers.includes("explore")) {
-        personality = "Explorer Mind · 探索型心智";
-      } else if (answers.includes("calm") && answers.includes("logic")) {
-        personality = "Observer Mind · 观察型心智";
-      }
-
-      document.getElementById("game").innerHTML = `
-        <div class="avatar">✨</div>
-        <h1>${personality}</h1>
-        <div class="result">
-          你是一个在理性与感性之间游走的存在。<br/>
-          You move between logic and emotion,<br/>
-          building meaning through choices.
-        </div>
-        <div class="share">
-          🔗 Share this result with a friend<br/>
-          and compare your minds.
-        </div>
-      `;
+    function restart() {
+      document.getElementById("result").style.display = "none";
+      document.getElementById("start").style.display = "block";
     }
 
-    renderQuestion();
+    function shareResult() {
+      if (navigator.share) {
+        navigator.share({
+          text: window.currentShare,
+          url: window.location.href
+        });
+      } else {
+        navigator.clipboard.writeText(
+          window.currentShare + " " + window.location.href
+        );
+        alert("结果已复制，可以粘贴分享 ✨");
+      }
+    }
   </script>
 </body>
 </html>
