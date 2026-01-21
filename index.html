@@ -1,193 +1,177 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>MindLink</title>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Hide & Think</title>
 
-  <style>
-    * {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
-      font-family: -apple-system, BlinkMacSystemFont, "SF Pro Text",
-        "Helvetica Neue", Arial, sans-serif;
-    }
+<style>
+* {
+  box-sizing: border-box;
+  font-family: -apple-system, BlinkMacSystemFont, "SF Pro Text", Arial, sans-serif;
+}
 
-    body {
-      min-height: 100vh;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      background: radial-gradient(circle at top, #ffffff, #eef2ff, #e9f0ff);
-      color: #111;
-    }
+body {
+  margin: 0;
+  min-height: 100vh;
+  background: radial-gradient(circle at top, #ffffff, #eef2ff, #e9f0ff);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
 
-    .card {
-      width: 100%;
-      max-width: 380px;
-      background: rgba(255, 255, 255, 0.8);
-      backdrop-filter: blur(20px);
-      border-radius: 28px;
-      padding: 28px 24px;
-      box-shadow: 0 30px 60px rgba(0, 0, 0, 0.08);
-      text-align: center;
-    }
+.card {
+  width: 100%;
+  max-width: 420px;
+  background: rgba(255,255,255,0.85);
+  backdrop-filter: blur(20px);
+  border-radius: 28px;
+  padding: 28px;
+  box-shadow: 0 30px 60px rgba(0,0,0,0.08);
+  text-align: center;
+}
 
-    .icon {
-      width: 64px;
-      height: 64px;
-      border-radius: 50%;
-      background: #eef2ff;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      margin: 0 auto 16px;
-      font-size: 28px;
-    }
+.ai {
+  width: 72px;
+  height: 72px;
+  margin: 0 auto 16px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #c7d2fe, #e0e7ff);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 30px;
+}
 
-    h1 {
-      font-size: 22px;
-      margin-bottom: 6px;
-    }
+h1 {
+  font-size: 22px;
+  margin-bottom: 6px;
+}
 
-    .subtitle {
-      font-size: 14px;
-      color: #666;
-      margin-bottom: 20px;
-    }
+.subtitle {
+  font-size: 14px;
+  color: #666;
+  margin-bottom: 20px;
+}
 
-    .question {
-      font-size: 15px;
-      margin-bottom: 18px;
-    }
+.text {
+  font-size: 15px;
+  line-height: 1.6;
+  margin-bottom: 18px;
+}
 
-    .btn {
-      width: 100%;
-      padding: 14px;
-      margin-bottom: 12px;
-      border-radius: 16px;
-      border: none;
-      font-size: 15px;
-      cursor: pointer;
-      background: #fff;
-      box-shadow: 0 6px 16px rgba(0, 0, 0, 0.06);
-      transition: all 0.2s ease;
-    }
+input {
+  width: 100%;
+  padding: 12px 14px;
+  border-radius: 14px;
+  border: 1px solid #ddd;
+  font-size: 14px;
+  margin-bottom: 12px;
+}
 
-    .btn:hover {
-      transform: translateY(-1px);
-    }
+button {
+  width: 100%;
+  padding: 14px;
+  border-radius: 16px;
+  border: none;
+  font-size: 15px;
+  background: #fff;
+  box-shadow: 0 6px 16px rgba(0,0,0,0.06);
+  cursor: pointer;
+  margin-bottom: 10px;
+}
 
-    .result {
-      display: none;
-    }
+button:hover {
+  transform: translateY(-1px);
+}
 
-    .result h2 {
-      font-size: 20px;
-      margin-bottom: 10px;
-    }
+.lang {
+  font-size: 13px;
+  color: #666;
+  cursor: pointer;
+  margin-bottom: 16px;
+}
 
-    .result p {
-      font-size: 14px;
-      color: #555;
-      line-height: 1.6;
-      margin-bottom: 18px;
-    }
-
-    .share {
-      font-size: 13px;
-      color: #666;
-      cursor: pointer;
-      text-decoration: underline;
-    }
-
-    footer {
-      margin-top: 18px;
-      font-size: 12px;
-      color: #aaa;
-    }
-  </style>
+.footer {
+  font-size: 12px;
+  color: #aaa;
+  margin-top: 12px;
+}
+</style>
 </head>
 
 <body>
-  <div class="card">
 
-    <!-- 首页 -->
-    <div id="start">
-      <div class="icon">🤖</div>
-      <h1>MindLink</h1>
-      <div class="subtitle">Your choices connect you</div>
+<div class="card">
+  <div class="ai">●</div>
 
-      <div class="question">
-        如果世界只剩下一种状态，你更希望是？
-      </div>
+  <div class="lang" onclick="toggleLang()">🌐 中文 / English</div>
 
-      <button class="btn" onclick="showResult('calm')">🌊 平静 · Calm</button>
-      <button class="btn" onclick="showResult('change')">✨ 变化 · Change</button>
-    </div>
+  <h1 id="title">Hide & Think</h1>
+  <div class="subtitle" id="subtitle">和 AI 一起思考的小世界</div>
 
-    <!-- 结果页 -->
-    <div id="result" class="result">
-      <div class="icon" id="resultIcon">✨</div>
-      <h2 id="resultTitle"></h2>
-      <p id="resultText"></p>
+  <div class="text" id="aiText"></div>
 
-      <button class="btn" onclick="restart()">🔁 Try another state</button>
-      <div class="share" onclick="shareResult()">📤 Share my result</div>
+  <input id="userInput" placeholder="说说你的想法..." />
+  <button onclick="submit()">Send</button>
+  <button onclick="restart()">🔄 Play Again</button>
 
-      <footer>
-        Experimental project · Built with AI ✨
-      </footer>
-    </div>
+  <div class="footer">Experimental · Built with curiosity + AI</div>
+</div>
 
-  </div>
+<script>
+let lang = "zh";
+let step = 0;
 
-  <script>
-    const results = {
-      calm: {
-        title: "Observer Mind · 观察型心智",
-        text: "你在理性与感性之间自由游走，通过观察与选择构建意义。",
-        icon: "✨",
-        share: "I got “Observer Mind” on MindLink 🌊"
-      },
-      change: {
-        title: "Explorer Mind · 探索型心智",
-        text: "你拥抱变化与未知，在流动中寻找成长与可能性。",
-        icon: "🚀",
-        share: "I got “Explorer Mind” on MindLink ✨"
-      }
-    };
+const content = {
+  zh: {
+    intro: "你好 👋 我会躲起来，你需要用思考来找到我。",
+    clue: "我躲在一个你每天看到，但很少注意的地方。",
+    reply: [
+      "这个想法很有意思。",
+      "你已经很接近了。",
+      "试着观察你周围的东西。"
+    ],
+    reveal: "我躲在「影子」里。它一直在你身边，却很容易被忽略。"
+  },
+  en: {
+    intro: "Hi 👋 I will hide somewhere. You find me by thinking.",
+    clue: "I’m hiding in a place you see every day, but rarely notice.",
+    reply: [
+      "Interesting thought.",
+      "You are getting closer.",
+      "Try observing your surroundings."
+    ],
+    reveal: "I was hiding in the shadow. It’s always with you, but easy to forget."
+  }
+};
 
-    function showResult(type) {
-      document.getElementById("start").style.display = "none";
-      document.getElementById("result").style.display = "block";
+document.getElementById("aiText").innerText = content.zh.intro;
 
-      document.getElementById("resultTitle").innerText = results[type].title;
-      document.getElementById("resultText").innerText = results[type].text;
-      document.getElementById("resultIcon").innerText = results[type].icon;
+function toggleLang() {
+  lang = lang === "zh" ? "en" : "zh";
+  step = 0;
+  document.getElementById("aiText").innerText = content[lang].intro;
+}
 
-      window.currentShare = results[type].share;
-    }
+function submit() {
+  if (step === 0) {
+    document.getElementById("aiText").innerText = content[lang].clue;
+    step++;
+  } else if (step === 1) {
+    const r = content[lang].reply[Math.floor(Math.random()*3)];
+    document.getElementById("aiText").innerText = r;
+    step++;
+  } else {
+    document.getElementById("aiText").innerText = content[lang].reveal;
+  }
+}
 
-    function restart() {
-      document.getElementById("result").style.display = "none";
-      document.getElementById("start").style.display = "block";
-    }
+function restart() {
+  step = 0;
+  document.getElementById("aiText").innerText = content[lang].intro;
+}
+</script>
 
-    function shareResult() {
-      if (navigator.share) {
-        navigator.share({
-          text: window.currentShare,
-          url: window.location.href
-        });
-      } else {
-        navigator.clipboard.writeText(
-          window.currentShare + " " + window.location.href
-        );
-        alert("结果已复制，可以粘贴分享 ✨");
-      }
-    }
-  </script>
 </body>
 </html>
