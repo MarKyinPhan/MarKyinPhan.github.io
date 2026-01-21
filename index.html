@@ -2,171 +2,193 @@
 <html lang="zh-CN">
 <head>
   <meta charset="UTF-8" />
+  <title>MindLink · 心智链接</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>MarKyinPhan</title>
 
   <style>
     * {
       box-sizing: border-box;
-      margin: 0;
-      padding: 0;
-      font-family: -apple-system, BlinkMacSystemFont,
-        "SF Pro Text","Helvetica Neue",Arial,sans-serif;
+      font-family: -apple-system, BlinkMacSystemFont, "Inter", "SF Pro Text",
+        "Helvetica Neue", Arial, sans-serif;
     }
 
     body {
+      margin: 0;
       min-height: 100vh;
       display: flex;
       justify-content: center;
       align-items: center;
-      background: radial-gradient(circle at top,#ffffff 0%,#eef2ff 40%,#e9f0ff 100%);
+      background: radial-gradient(circle at top, #ffffff 0%, #eef3ff 40%, #e6ecff 100%);
       color: #111;
     }
 
     .card {
       width: 100%;
-      max-width: 380px;
-      background: rgba(255,255,255,0.75);
+      max-width: 420px;
+      background: rgba(255, 255, 255, 0.75);
       backdrop-filter: blur(20px);
       border-radius: 28px;
-      padding: 28px 22px 24px;
-      box-shadow:
-        0 30px 60px rgba(0,0,0,0.08),
-        inset 0 1px 0 rgba(255,255,255,0.6);
+      padding: 28px 24px 32px;
+      box-shadow: 0 30px 60px rgba(0, 0, 0, 0.08);
+      text-align: center;
+      animation: float 6s ease-in-out infinite;
+    }
+
+    @keyframes float {
+      0% { transform: translateY(0); }
+      50% { transform: translateY(-6px); }
+      100% { transform: translateY(0); }
     }
 
     .avatar {
-      width: 96px;
-      height: 96px;
+      width: 88px;
+      height: 88px;
       border-radius: 50%;
+      background: linear-gradient(135deg, #c7d2fe, #e0e7ff);
+      display: flex;
+      align-items: center;
+      justify-content: center;
       margin: 0 auto 16px;
-      overflow: hidden;
-      border: 2px solid rgba(255,255,255,0.8);
-    }
-
-    .avatar img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
+      font-size: 36px;
     }
 
     h1 {
-      text-align: center;
       font-size: 22px;
-      font-weight: 600;
       margin-bottom: 6px;
+      font-weight: 600;
     }
 
     .subtitle {
-      text-align: center;
       font-size: 14px;
       color: #666;
-      margin-bottom: 22px;
+      margin-bottom: 24px;
     }
 
-    .links {
+    .question {
+      font-size: 16px;
+      margin-bottom: 20px;
+      line-height: 1.6;
+    }
+
+    .options {
       display: flex;
       flex-direction: column;
       gap: 12px;
     }
 
-    .link {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      padding: 14px 18px;
-      border-radius: 18px;
-      background: rgba(255,255,255,0.85);
-      text-decoration: none;
-      color: #111;
+    button {
+      border: none;
+      border-radius: 16px;
+      padding: 14px;
       font-size: 15px;
-      box-shadow: 0 6px 16px rgba(0,0,0,0.06);
-      transition: 0.25s ease;
+      cursor: pointer;
+      background: rgba(255, 255, 255, 0.9);
+      box-shadow: 0 6px 16px rgba(0, 0, 0, 0.06);
+      transition: all 0.25s ease;
     }
 
-    .link:hover {
+    button:hover {
       transform: translateY(-1px);
-      box-shadow: 0 10px 22px rgba(0,0,0,0.08);
+      box-shadow: 0 10px 22px rgba(0, 0, 0, 0.08);
     }
 
-    .link span {
-      display: flex;
-      align-items: center;
-      gap: 10px;
+    .result {
+      font-size: 16px;
+      line-height: 1.7;
     }
 
-    .icon {
-      width: 22px;
-      height: 22px;
-    }
-
-    footer {
-      margin-top: 22px;
-      text-align: center;
-      font-size: 12px;
-      color: #999;
+    .share {
+      margin-top: 20px;
+      font-size: 13px;
+      color: #555;
     }
   </style>
 </head>
 
 <body>
-  <div class="card">
-    <div class="avatar">
-      <img src="avatar.jpg" alt="Avatar">
-    </div>
+  <div class="card" id="game">
+    <div class="avatar">🤖</div>
+    <h1>MindLink</h1>
+    <div class="subtitle">心智链接 · Your choices connect you</div>
 
-    <h1>MarKyinPhan</h1>
-    <div class="subtitle">Creator · Social</div>
+    <div class="question" id="question"></div>
 
-    <div class="links">
-
-      <a class="link" href="https://www.instagram.com/mo.bei.961" target="_blank">
-        <span>
-          <img class="icon" src="https://cdn.jsdelivr.net/npm/simple-icons@v9/icons/instagram.svg">
-          Instagram
-        </span> →
-      </a>
-
-      <a class="link" href="https://www.threads.com/@mo.bei.961" target="_blank">
-        <span>
-          <img class="icon" src="https://cdn.jsdelivr.net/npm/simple-icons@v9/icons/threads.svg">
-          Threads
-        </span> →
-      </a>
-
-      <a class="link" href="https://x.com/markyinphan?s=21" target="_blank">
-        <span>
-          <img class="icon" src="https://cdn.jsdelivr.net/npm/simple-icons@v9/icons/x.svg">
-          X / Twitter
-        </span> →
-      </a>
-
-      <a class="link" href="https://www.facebook.com/share/1P8LNg19Nr/?mibextid=wwXIfr" target="_blank">
-        <span>
-          <img class="icon" src="https://cdn.jsdelivr.net/npm/simple-icons@v9/icons/facebook.svg">
-          Facebook
-        </span> →
-      </a>
-
-      <a class="link" href="https://www.tiktok.com/@phan7697?_r=1&_t=ZS-93ArponfuQX" target="_blank">
-        <span>
-          <img class="icon" src="https://cdn.jsdelivr.net/npm/simple-icons@v9/icons/tiktok.svg">
-          TikTok
-        </span> →
-      </a>
-
-      <a class="link" href="https://t.me/Mar20037" target="_blank">
-        <span>
-          <img class="icon" src="https://cdn.jsdelivr.net/npm/simple-icons@v9/icons/telegram.svg">
-          Telegram
-        </span> →
-      </a>
-
-    </div>
-
-    <footer>
-      © 2026 MarKyinPhan · GitHub Pages
-    </footer>
+    <div class="options" id="options"></div>
   </div>
+
+  <script>
+    const questions = [
+      {
+        text: "如果世界只剩下一种状态，你更希望是？<br/>If the world had only one state:",
+        options: [
+          { text: "🌊 平静 · Calm", value: "calm" },
+          { text: "✨ 变化 · Change", value: "change" }
+        ]
+      },
+      {
+        text: "你更相信？<br/>You trust more in:",
+        options: [
+          { text: "📊 逻辑 · Logic", value: "logic" },
+          { text: "💫 直觉 · Intuition", value: "intuition" }
+        ]
+      },
+      {
+        text: "当面对未知时，你会？<br/>Facing the unknown:",
+        options: [
+          { text: "🔍 探索 · Explore", value: "explore" },
+          { text: "🛡️ 观察 · Observe", value: "observe" }
+        ]
+      }
+    ];
+
+    let current = 0;
+    let answers = [];
+
+    const questionEl = document.getElementById("question");
+    const optionsEl = document.getElementById("options");
+
+    function renderQuestion() {
+      const q = questions[current];
+      questionEl.innerHTML = q.text;
+      optionsEl.innerHTML = "";
+
+      q.options.forEach(opt => {
+        const btn = document.createElement("button");
+        btn.textContent = opt.text;
+        btn.onclick = () => {
+          answers.push(opt.value);
+          current++;
+          current < questions.length ? renderQuestion() : showResult();
+        };
+        optionsEl.appendChild(btn);
+      });
+    }
+
+    function showResult() {
+      let personality = "Balanced Mind · 平衡型心智";
+
+      if (answers.includes("change") && answers.includes("explore")) {
+        personality = "Explorer Mind · 探索型心智";
+      } else if (answers.includes("calm") && answers.includes("logic")) {
+        personality = "Observer Mind · 观察型心智";
+      }
+
+      document.getElementById("game").innerHTML = `
+        <div class="avatar">✨</div>
+        <h1>${personality}</h1>
+        <div class="result">
+          你是一个在理性与感性之间游走的存在。<br/>
+          You move between logic and emotion,<br/>
+          building meaning through choices.
+        </div>
+        <div class="share">
+          🔗 Share this result with a friend<br/>
+          and compare your minds.
+        </div>
+      `;
+    }
+
+    renderQuestion();
+  </script>
 </body>
 </html>
